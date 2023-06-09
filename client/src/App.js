@@ -5,6 +5,7 @@ import Homepage from './Pages/Homepage';
 import Items from './Pages/Items';
 import Profile from './Pages/Profile';
 import {BrowserRouter, Routes, Route} from "react-router-dom"
+import Sell from './Pages/Sell';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route exact path='/' element={<Homepage/>}/>
             <Route exact path='/profile' element={<Profile/>}/>
             <Route exact path='/items' element={<Items/>}/>
+            <Route exact path='/sell' element={<Sell/>}/>
           </Routes>
         </main>
       </BrowserRouter>

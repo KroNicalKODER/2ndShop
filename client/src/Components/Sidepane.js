@@ -23,11 +23,11 @@ const Sidepane = () => {
                 <i className="-skew-y-6 bi bi-person-circle text-xl"></i>
                 <span className='-skew-y-6 text-xs font-montserrat font-medium mt-2 '>PROFILE</span>
             </NavLink>
-    
-            <div className="skew-y-6 bg-white inline-flex h-[50px] w-[65px] flex-col py-11 hover:w-[80px] hover:text-blue-500 transition-all rounded-br-md justify-center items-center">
+
+            <NavLink to='/sell' className={({isActive})=>isActive?activeStyle:defaultStyle}>                
                 <i className="-skew-y-6 bi bi-plus-circle text-xl"></i>
                 <span className='-skew-y-6 text-xs font-montserrat font-medium mt-2 '>SELL</span>
-            </div> 
+            </NavLink> 
         </div>
     </div>
   )

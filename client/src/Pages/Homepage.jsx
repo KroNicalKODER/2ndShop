@@ -7,7 +7,8 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 const Homepage = () => {
     const [goodType,setGoodType] = useState('resale')
   return (
-    <div className=''>
+    <div className='flex flex-col'>
+        <div className="fixed cursor-pointer flex justify-center items-center z-[10] rounded-[50%] mt-[80vh] self-baseline w-[50px] h-[50px] bg-blue-400"><i className='bi text-white bi-arrow-up'/></div>
         <div className='flex mr-12'>
             <div className='flex-[1] bg-white w-fit px-8 ml-4 py-4 mt-5 rounded-md shadow-md'>
                 <div className='flex items-center'>
