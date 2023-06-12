@@ -3,7 +3,7 @@ import Card from './Card'
 
 const Cards = () => {
   return (
-    <div className='flex flex-wrap '>
+    <div className='flex flex-wrap justify-center '>
         <Card/>
         <Card/>
         <Card/>

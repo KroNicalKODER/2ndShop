@@ -1,5 +1,6 @@
 import React from 'react'
 import shirt from '../images/shirt.webp'
+import { Link } from 'react-router-dom'
 
 const Card = (props) => {
   let inProfile = false
@@ -66,9 +67,11 @@ const Card = (props) => {
                 :
                 inCart
                 ?
-                <div className="flex mt-2 items-center justify-center">
-                  <button className="text-white bg-amber-700 hover:bg-amber-800 ml-1 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg font-inter text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</button>
-              </div>
+                <Link to={"item/test"}>
+                  <div className="flex mt-2 items-center justify-center">
+                    <button className="text-white bg-amber-700 hover:bg-amber-800 ml-1 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg font-inter text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</button>
+                  </div>
+                </Link>
                 : 
                 <div className='w-full flex justify-center'>
                   <button className='text-sm font-inter px-4 py-2 rounded-lg bg-gray-200 border-2 border-gray-600'>Bought on 12-10-2013</button>
@@ -76,7 +79,11 @@ const Card = (props) => {
               :
               <div className="flex mt-2 items-center justify-center">
                 <button className="text-white bg-blue-700 hover:bg-blue-800 mr-1 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg font-inter text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
-                <button className="text-white bg-amber-700 hover:bg-amber-800 ml-1 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg font-inter text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</button>
+                <Link to={"item/test"}>
+                  <div className="flex items-center justify-center">
+                    <button className="text-white bg-amber-700 hover:bg-amber-800 ml-1 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg font-inter text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</button>
+                  </div>
+                </Link>
               </div>
             }
           </div>

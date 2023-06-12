@@ -1,0 +1,17 @@
+
+@media only screen and (max-width: 895px) {
+    .css-query {
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 613px) {
+    .css-query-wrap {
+        display: flex;
+        flex-direction: column;
+    }
+    .css-query-margin {
+        margin-top: 1rem;
+    }
+}
+

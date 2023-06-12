@@ -14,7 +14,7 @@ const Login = ({show, handleCloseLogin}) => {
      }
     return (
         <div id='login-popup' onClick={handleClose} className='fixed flex justify-center items-center transition duration-1000 ease-in-out inset-0 bg-opacity-30 backdrop-blur-sm bg-black z-[100]'>
-            <div className=' border rounded-lg px-24 py-10 bg-slate-100 shadow-md'>
+            <div className=' border rounded-lg px-20 py-10 bg-slate-100 shadow-md'>
                 <div className='w-full flex flex-col'>
                     <div className='mb-3'>LOGIN</div>
                     <form className='w-full flex flex-col'>

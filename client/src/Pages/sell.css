@@ -1,0 +1,10 @@
+@media only screen and (max-width: 940px){
+    .css-sell-col{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .css-extra-width{
+        height: calc(5rem+35px);
+    }
+}
