@@ -1,4 +1,3 @@
-import { Timestamp } from "mongodb";
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
@@ -11,19 +10,23 @@ const UserSchema = new mongoose.Schema({
     },
     address : {
         type: String,
-        required: true
     },
     email : {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     password : {
         type: String,
-        required: true
     },
     phone : {
         type: String,
-        required: true
+        required: true,
+        unique: true
+    },
+    formGoogle: {
+        type: Boolean,
+        default: false
     },
     itemCart: {
         type:[String]

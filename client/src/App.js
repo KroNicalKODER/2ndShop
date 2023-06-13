@@ -15,6 +15,20 @@ function App() {
   const [isSidepane,setIsSidepane] = useState(window.innerWidth<=800);
   const [screenSize, setScreenSize] = useState(window.innerWidth);
 
+  const { REACT_APP_CORS_ORIGIN } = process.env;
+
+if (REACT_APP_CORS_ORIGIN) {
+// Set the Cross-Origin-Opener-Policy header to the value of the REACT_APP_CORS_ORIGIN environment variable
+const corsHeaders = {
+"Cross-Origin-Opener-Policy": REACT_APP_CORS_ORIGIN,
+};
+
+// Set the headers on the window object
+window.addEventListener("load", () => {
+window.headers = corsHeaders;
+});
+}
+
   useEffect(() => {
     const handleResize = () => {
       setScreenSize(window.innerWidth);

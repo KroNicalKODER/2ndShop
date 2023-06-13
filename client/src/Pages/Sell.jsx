@@ -17,6 +17,10 @@ const Sell = () => {
     const [subbCategory,setSubbCategory] = useState()
     const [genderState,setGender] = useState('Male')
     const [category,setCategory] = useState('Clothing')
+
+
+
+
     let imgsArray = [AddImg,AddImg,AddImg,AddImg,AddImg]
     const [currIndex,setCurrIndex] = useState(0)
 
@@ -185,9 +189,9 @@ const Sell = () => {
                 <input type="text" name="sell-age" id="sell-age" placeholder='Enter Age' className='h-full border border-black rounded-md ml-2 pl-2 text-sm' />
             </div>
             <hr className="w-full mt-2" />
-            <div className="mt-2 h-6 items-center justify-between w-full min-w-[200px] flex">
-                <label htmlFor="sell-link">Link: </label>
-                <input type="text" name="sell-link" id="sell-link" placeholder='Enter Link' className='h-full border border-black rounded-md ml-2 pl-2 text-sm' />
+            <div className="mt-2 h-fit items-center justify-between w-full min-w-[200px] flex">
+                <label htmlFor="sell-link">Link (org product - if any): </label>
+                <input type="text" name="sell-link" id="sell-link" placeholder='Enter Link' className='h-full border border-black rounded-md ml-2 pl-2 py-1 text-sm' />
             </div>
 
             {
