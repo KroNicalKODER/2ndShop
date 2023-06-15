@@ -21,6 +21,12 @@ const connect = ()=>{
 
 app.use(cookieParser())
 app.use(express.json())
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+  });
 app.use('/api/auth',authRoutes)
 app.use('/api/user',userRoutes)
 app.use('/api/item',itemRoutes)
@@ -34,6 +40,7 @@ app.use((err,req,res,next)=>{
         message
     })
 })
+
 
 app.listen(8800,()=>{
     connect()

@@ -9,6 +9,8 @@ const Footer = () => {
         <span className='ml-3'>2nd Shoppers</span>
         </div>
         <div className='self-center'>Contact Us</div>
+        <div className='self-center'>Privacy Policy</div>
+        <div className='self-center'>About Us</div>
         <div className="h-[50px]"></div>
     </div>
   )

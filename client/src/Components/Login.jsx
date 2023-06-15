@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import {auth, provider} from '../Firebase'
-import { signInWithPopup } from 'firebase/auth'
 
 import "bootstrap-icons/font/bootstrap-icons.css"
 import { useDispatch } from 'react-redux'
 import { loginFailure, loginStart, loginSuccess } from '../Redux/userSlice'
+import { signInWithRedirect } from 'firebase/auth'
 
 const Login = ({show, handleCloseLogin}) => {
     const [email,setEmail] = useState("")
@@ -14,21 +14,7 @@ const Login = ({show, handleCloseLogin}) => {
     const dispatch = useDispatch()
 
     const handleSignInWithGoogle = (e) => {
-        dispatch(loginStart())
-        signInWithPopup(auth, provider).then(async (result)=>{
-            console.log(result)
-            await axios.post("http://localhost:8800/api/auth/google",{
-                name: result.user.displayName,
-                email: result.user.email,
-                avatarUrl: result.user.photoURL
-            })
-        }).then((res)=>{
-            dispatch(loginSuccess(res.data))
-            setErr(<div className='font-inter text-green-500 text-xs mt-3'>Logged In successfully</div>)
-        }).catch((error)=>{
-            dispatch(loginFailure())
-            setErr(<div className='font-inter text-red-500 text-xs mt-3'>Invalid email or password</div>)
-        })
+        signInWithRedirect(auth, provider);
     }
     
     const handleLogin = async (e) => {
@@ -37,6 +23,7 @@ const Login = ({show, handleCloseLogin}) => {
         dispatch(loginStart())
         try {
             const user = await axios.post('/auth/login', {email,password})
+            console.log(user.data)
             dispatch(loginSuccess(user.data))
             setErr(<div className='font-inter text-green-500 text-xs mt-3'>Logged In successfully</div>)
 

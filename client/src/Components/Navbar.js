@@ -1,4 +1,4 @@
-import React, { useEffect, useState }     from 'react'
+import React, { useState }     from 'react'
 import logo from '../images/logo.png'
 import Login from './Login'
 import Register from './Register'
@@ -46,6 +46,7 @@ const Navbar = () => {
               <button onClick={()=>setShowRegister(true)} className='mx-2 rounded-md border-2 px-4 py-1 border-black transition duration-200 hover:bg-black hover:text-white'>Register</button>
           </div>
           }
+          
           <Login show={showLogin} handleCloseLogin = {handleClose}/>
           <Register showRegister={showRegister} handleCloseRegister = {handleCloseRegister}/>
     </div>

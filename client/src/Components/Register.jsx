@@ -74,10 +74,7 @@ const Register = ({showRegister, handleCloseRegister}) => {
                         />
                         <hr className="w-full" />
                     </form>
-                    <div className='self-center mt-2'> OR</div>
-                    <button className='mt-3 border border-black py-1 px-2 rounded-md hover:bg-slate-200 transition-all'>
-                        Register with google <i className='bi bi-google text-blue-800 ml-2' />
-                    </button>
+                    
                 </div>
                 <div className='mt-10 flex justify-around'>
                     <button type="button"
