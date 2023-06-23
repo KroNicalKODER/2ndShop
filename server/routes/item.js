@@ -1,9 +1,14 @@
 import express from 'express'
 import getToken  from '../getToken.js'
-import {sell,buy,update,del} from '../controllers/item.js'
+import {sell,buy,update,del, get_resale_items, get_redesign_items} from '../controllers/item.js'
 
 const router = express.Router()
 
+//get resale items
+router.get("/resale",get_resale_items)
+
+//get redesign items
+router.get("/redesign",get_redesign_items)
 //Sell an Item
 router.post("/",getToken,sell)
 

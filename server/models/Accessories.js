@@ -29,7 +29,8 @@ const accessSchema = mongoose.Schema({
     },
     resale: {
         type: Boolean,
-        required: true
+        required: true,
+        index: true, 
     },
     orgLink: {
         type: String
@@ -63,5 +64,7 @@ const accessSchema = mongoose.Schema({
 },{
     timestamps: true
 })
+
+accessSchema.index({ resale: 1 });
 
 export default mongoose.model("access",accessSchema)
