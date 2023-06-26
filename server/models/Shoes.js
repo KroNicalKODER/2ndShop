@@ -33,7 +33,8 @@ const shoeSchema = mongoose.Schema({
     },
     resale: {
         type: Boolean,
-        required: true
+        required: true,
+        index: true, 
     },
     orgLink: {
         type: String
@@ -67,5 +68,7 @@ const shoeSchema = mongoose.Schema({
 },{
     timestamps: true
 })
+
+shoeSchema.index({ resale: 1 });
 
 export default mongoose.model("shoes",shoeSchema)

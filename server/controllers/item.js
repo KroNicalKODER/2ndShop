@@ -192,3 +192,39 @@ export const buy = async (req, res, next) => {
         }
     }
 }
+
+export const get_resale_items = async (req,res,next)=>{
+    try {
+        const shoes = await Shoes.find({ resale: true }).limit(10);
+        const clothing = await Clothing.find({ resale: true }).limit(10);
+        const accessories = await Accessories.find({ resale: true }).limit(10);
+    
+        res.status(200).json({
+          success: true,
+          shoes,
+          clothing,
+          accessories,
+        });
+      } catch (error) {
+        next(error);
+      }
+
+}
+
+export const get_redesign_items = async (req,res,next)=>{
+    try {
+        const shoes = await Shoes.find({ resale: false }).limit(10);
+        const clothing = await Clothing.find({ resale: false }).limit(10);
+        const accessories = await Accessories.find({ resale: false }).limit(10);
+    
+        res.status(200).json({
+          success: true,
+          shoes,
+          clothing,
+          accessories,
+        });
+      } catch (error) {
+        next(error);
+      }
+
+}
