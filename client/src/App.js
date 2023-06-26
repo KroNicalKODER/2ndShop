@@ -14,6 +14,10 @@ import { getAuth, getRedirectResult } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { loginStart,loginFailure,loginSuccess } from './Redux/userSlice';
 import axios from 'axios';
+import firebase from './Firebase';
+import UploadSuccess from './Pages/UploadSuccess';
+import SellError from './Pages/SellError';
+
 
 function App() {
   const [isSidepane, setIsSidepane] = useState(window.innerWidth <= 800);
@@ -63,6 +67,7 @@ function App() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
   return (
     <div className="min-h-screen max-h-fit min-w-full max-w-fit bg-gray-300 flex flex-col">
       <BrowserRouter>
@@ -79,6 +84,8 @@ function App() {
             <Route path="item">
               <Route path=":id" element={<Item />} />
             </Route>
+            <Route exact path='/sell-success' element={<UploadSuccess/>}/>
+            <Route exact path='/sell-error' element={<SellError/>}/>
           </Routes>
         </main>
       </BrowserRouter>

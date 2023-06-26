@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='bg-gray-700 py-10 font-inter text-sm text-white flex justify-center flex-col'>
+    <div className='bg-gray-700 py-10  mt-4 font-inter text-sm text-white flex justify-center flex-col'>
         <div className='self-center'>All Rights Reserved</div>
         <div className='self-center'>
         <span>Copyright</span>

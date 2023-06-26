@@ -1,11 +1,13 @@
 import express from 'express'
 import getToken  from '../getToken.js'
-import {sell,buy,update,del} from '../controllers/item.js'
+import {sellShoes,sellCloths,sellAccess,buy,update,del} from '../controllers/item.js'
 
 const router = express.Router()
 
 //Sell an Item
-router.post("/",getToken,sell)
+router.post("/shoes",getToken,sellShoes)
+router.post("/cloths",getToken,sellCloths)
+router.post("/access",getToken,sellAccess)
 
 //Delete an Item
 router.delete("/:id",getToken,del)
