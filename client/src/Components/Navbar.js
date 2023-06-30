@@ -1,4 +1,4 @@
-import React, { useState }     from 'react'
+import React, { useEffect, useState }     from 'react'
 import logo from '../images/logo.png'
 import Login from './Login'
 import Register from './Register'
@@ -11,6 +11,7 @@ const Navbar = () => {
   const {currentUser} = useSelector(state => state.user)
   const [showLogin, setShowLogin] = useState(false)
   const [showRegister, setShowRegister] = useState(false)
+
 
   const dispatch = useDispatch()
   const handleLogOut = (e) => {

@@ -1,11 +1,38 @@
-import React, { useState } from 'react'
-import Main from '../Components/Main'
+import React, { useEffect, useState } from 'react'
+import Sell from '../Data/Sell.json'
 import "bootstrap-icons/font/bootstrap-icons.css"
 import './Homepage.css' 
+import Card from '../Components/Card'
+import axios, { all } from 'axios'
 
 
 const Homepage = () => {
+
+    const [allItems,setAllItems] = useState([])
+    const [skip,setSkip] = useState(0)
+    const [currData,setCurrData] = useState([])
+
     const [goodType,setGoodType] = useState('resale')
+    const [gender,setGender] = useState('Male')
+
+    const fetchItems = async (skip) => {
+        try {
+            await axios.get(`/item?skip=0`)
+            .then((response) => {
+                setAllItems(response.data.data)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
+
+    useEffect(()=>{
+        fetchItems(skip)
+    },[skip])
   return (
     <div className='flex flex-col'>
         {/* <div className="fixed cursor-pointer flex justify-center items-center z-[10] rounded-[50%] mt-[80vh] self-baseline w-[50px] h-[50px] bg-blue-400"><i className='bi text-white bi-arrow-up'/></div> */}
@@ -14,6 +41,15 @@ const Homepage = () => {
                 <div className='flex items-center'>
                     <div className='font-ubuntu text-lg font-bold mb-2 flex items-center text-gray-700'>Filters <i className='text-sm ml-2 bi-filter bi'></i></div>
                     <input type="text" className='mx-2 ml-4 py-1 w-full border px-2 border-black rounded-lg' placeholder='Search...'/>
+                </div>
+                <div className='mt-3 justify-between flex items-center'>
+                    <span>Gender : </span>
+                    <div className="flex">
+                        <input type="radio" name="gender" value='Male' onChange={e=>setGender(e.target.value)} className='peer/male' id="sell-gender-male" hidden />
+                        <label htmlFor="sell-gender-male" className='border py-1 text-sm rounded-bl-md rounded-tl-md px-3 border-black peer-checked/male:border-blue-500 peer-checked/male:text-blue-500'> Male </label>
+                        <input type="radio" name="gender" value='Female' onChange={e=>setGender(e.target.value)} className='peer/female' id="sell-gender-female" hidden />
+                        <label htmlFor="sell-gender-female" className='border py-1 text-sm rounded-br-md rounded-tr-md px-3 border-black peer-checked/female:border-blue-500 peer-checked/female:text-blue-500'> Female </label>
+                    </div>
                 </div>
                 <div className='flex mt-3 justify-between css-query-wrap'>
                     <div className=' py-1 px-2 shadow-sm border-2 border-blue-200 rounded-md'>
@@ -92,7 +128,15 @@ const Homepage = () => {
                 
             </div>
         </div>
-        <Main type={goodType}/>
+        <div className='flex flex-wrap justify-center'>
+            {
+                // JSON.stringify(allItems)
+                (allItems.length > 0) &&
+                (allItems.map((item)=>(
+                     <Card props={item}/>
+                )))
+            }
+        </div>
     </div>
   )
 }

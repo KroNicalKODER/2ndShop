@@ -8,6 +8,10 @@ const shoeSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: true
+    },
     subCategory: {
         type: String,
         required: true,

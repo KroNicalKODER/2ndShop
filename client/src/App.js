@@ -82,7 +82,7 @@ function App() {
             <Route path='items/item/:id' element={<Item />} />
             <Route exact path='/sell' element={<Sell />} />
             <Route path="item">
-              <Route path=":id" element={<Item />} />
+              <Route path=":id/:type" element={<Item />} />
             </Route>
             <Route exact path='/sell-success' element={<UploadSuccess/>}/>
             <Route exact path='/sell-error' element={<SellError/>}/>

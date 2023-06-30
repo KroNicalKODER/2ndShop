@@ -42,189 +42,233 @@ export const sellAccess = async (req, res, next) => {
     }
 }
 
-export const del = async (req, res, next) => {
-    if (req.params.type === 'shoes') {
+export const delShoes = async (req, res, next) => {
+    const item = await Shoes.findById(req.params.id)
+    if (item.ownerId === req.user.id) {
+        try {
+            Shoes.findByIdAndDelete(req.params.id)
+            res.status(200).send("Shoe Deleted Successfully")
+        } catch (error) {
+            next(error)
+        }
+    } else {
+        next(genErr(401, 'You are not authorized to delete this Item'))
+    }
+}
+
+export const delCloths = async (req, res, next) => {
+    const item = await Clothing.findById(req.params.id)
+    if (item.ownerId === req.user.id) {
+        try {
+            Clothing.findByIdAndDelete(req.params.id)
+            res.status(200).send("Cloth Deleted Successfully")
+        } catch (error) {
+            next(error)
+        }
+    } else {
+        next(genErr(401, 'You are not authorized to delete this Item'))
+    }
+}
+
+export const delAccess = async (req, res, next) => {
+    const item = await Accessories.findById(req.params.id)
+    if (item.ownerId === req.user.id) {
+        try {
+            Accessories.findByIdAndDelete(req.params.id)
+            res.status(200).send("Accessory Deleted Successfully")
+        } catch (error) {
+            next(error)
+        }
+    } else {
+        next(genErr(401, 'You are not authorized to delete this Item'))
+    }
+}
+
+export const updateShoes = async (req, res, next) => {
+    try {
         const item = await Shoes.findById(req.params.id)
+        if (!item) next(genErr(404, 'Item Not Found'))
         if (item.ownerId === req.user.id) {
-            try {
-                Shoes.findByIdAndDelete(req.params.id)
-                res.status(200).send("Shoe Deleted Successfully")
-            } catch (error) {
-                next(error)
-            }
+            const updatedItem = await Shoes.findByIdAndUpdate(req.params.id,
+                {
+                    $set: req.body
+                }, { new: true })
+            res.status(200).json("Updated Successfully")
         } else {
-            next(genErr(401, 'You are not authorized to delete this Item'))
+            next(genErr(403, "You can Update only your item"))
         }
+    } catch (error) {
+        next(error)
     }
-    else if (req.params.type === 'cloths') {
+}
+export const updateCloths = async (req, res, next) => {
+    try {
         const item = await Clothing.findById(req.params.id)
+        if (!item) next(genErr(404, 'Item Not Found'))
         if (item.ownerId === req.user.id) {
-            try {
-                Clothing.findByIdAndDelete(req.params.id)
-                res.status(200).send("Cloth Deleted Successfully")
-            } catch (error) {
-                next(error)
-            }
+            const updatedItem = await Clothing.findByIdAndUpdate(req.params.id,
+                {
+                    $set: req.body
+                }, { new: true })
+            res.status(200).json("Updated Successfully")
         } else {
-            next(genErr(401, 'You are not authorized to delete this Item'))
+            next(genErr(403, "You can Update only your item"))
         }
+    } catch (error) {
+        next(error)
     }
-    else if (req.params.type === 'access') {
+}
+export const updateAccess = async (req, res, next) => {
+    try {
         const item = await Accessories.findById(req.params.id)
+        if (!item) next(genErr(404, 'Item Not Found'))
         if (item.ownerId === req.user.id) {
-            try {
-                Accessories.findByIdAndDelete(req.params.id)
-                res.status(200).send("Accessory Deleted Successfully")
-            } catch (error) {
-                next(error)
-            }
+            const updatedItem = await Accessories.findByIdAndUpdate(req.params.id,
+                {
+                    $set: req.body
+                }, { new: true })
+            res.status(200).json("Updated Successfully")
         } else {
-            next(genErr(401, 'You are not authorized to delete this Item'))
+            next(genErr(403, "You can Update only your item"))
         }
-    }
-
-}
-
-export const update = async (req, res, next) => {
-    if (req.params.type === 'shoes') {
-        try {
-            const item = await Item.findById(req.params.id)
-            if (!item) next(genErr(404, 'Item Not Found'))
-            if (item.ownerId === req.user.id) {
-                const updatedItem = await Item.findByIdAndUpdate(req.params.id,
-                    {
-                        $set: req.body
-                    }, { new: true })
-                res.status(200).json("Updated Successfully")
-            } else {
-                next(genErr(403, "You can Update only your item"))
-            }
-        } catch (error) {
-            next(error)
-        }
-    }
-    else if (req.params.type === 'cloths') {
-        try {
-            const item = await Item.findById(req.params.id)
-            if (!item) next(genErr(404, 'Item Not Found'))
-            if (item.ownerId === req.user.id) {
-                const updatedItem = await Item.findByIdAndUpdate(req.params.id,
-                    {
-                        $set: req.body
-                    }, { new: true })
-                res.status(200).json("Updated Successfully")
-            } else {
-                next(genErr(403, "You can Update only your item"))
-            }
-        } catch (error) {
-            next(error)
-        }
-    }
-    else if (req.params.type === 'access') {
-        try {
-            const item = await Item.findById(req.params.id)
-            if (!item) next(genErr(404, 'Item Not Found'))
-            if (item.ownerId === req.user.id) {
-                const updatedItem = await Item.findByIdAndUpdate(req.params.id,
-                    {
-                        $set: req.body
-                    }, { new: true })
-                res.status(200).json("Updated Successfully")
-            } else {
-                next(genErr(403, "You can Update only your item"))
-            }
-        } catch (error) {
-            next(error)
-        }
+    } catch (error) {
+        next(error)
     }
 }
 
-export const buy = async (req, res, next) => {
-    if (req.params.type === 'shoes') {
-        try {
-            const item = await Shoes.findById(req.params.id)
-            if (item.ownerId === req.user.id) next(genErr(400, "You Cannot Buy the Prodeuct You Sold"))
-            else {
-                await Shoes.findByIdAndUpdate(req.params.id, {
-                    $set: {
-                        buyerId: req.user.id,
-                        buyerAddress: req.body.address
-                    }
-                })
-                res.status(200).json("You bought this Shoe..")
-            }
-        } catch (error) {
-            next(error)
+
+export const buyShoes = async (req, res, next) => {
+    try {
+        const item = await Shoes.findById(req.params.id)
+        if (item.ownerId === req.user.id) next(genErr(400, "You Cannot Buy the Prodeuct You Sold"))
+        else {
+            await Shoes.findByIdAndUpdate(req.params.id, {
+                $set: {
+                    buyerId: req.user.id,
+                    buyerAddress: req.body.address
+                }
+            })
+            res.status(200).json("You bought this Shoe..")
         }
+    } catch (error) {
+        next(error)
     }
-    else if (req.params.type === 'cloths') {
-        try {
-            const item = await Clothing.findById(req.params.id)
-            if (item.ownerId === req.user.id) next(genErr(400, "You Cannot Buy the Prodeuct You Sold"))
-            else {
-                await Clothing.findByIdAndUpdate(req.params.id, {
-                    $set: {
-                        buyerId: req.user.id,
-                        buyerAddress: req.body.address
-                    }
-                })
-                res.status(200).json("You bought this Cloth..")
-            }
-        } catch (error) {
-            next(error)
+}
+export const buyCloths = async (req, res, next) => {
+    try {
+        const item = await Clothing.findById(req.params.id)
+        if (item.ownerId === req.user.id) next(genErr(400, "You Cannot Buy the Prodeuct You Sold"))
+        else {
+            await Clothing.findByIdAndUpdate(req.params.id, {
+                $set: {
+                    buyerId: req.user.id,
+                    buyerAddress: req.body.address
+                }
+            })
+            res.status(200).json("You bought this Cloth..")
         }
+    } catch (error) {
+        next(error)
     }
-    else if (req.params.type === 'access') {
-        try {
-            const item = await Accessories.findById(req.params.id)
-            if (item.ownerId === req.user.id) next(genErr(400, "You Cannot Buy the Prodeuct You Sold"))
-            else {
-                await Accessories.findByIdAndUpdate(req.params.id, {
-                    $set: {
-                        buyerId: req.user.id,
-                        buyerAddress: req.body.address
-                    }
-                })
-                res.status(200).json("You bought this Accessory..")
-            }
-        } catch (error) {
-            next(error)
+}
+export const buyAccess = async (req, res, next) => {
+    try {
+        const item = await Accessories.findById(req.params.id)
+        if (item.ownerId === req.user.id) next(genErr(400, "You Cannot Buy the Prodeuct You Sold"))
+        else {
+            await Accessories.findByIdAndUpdate(req.params.id, {
+                $set: {
+                    buyerId: req.user.id,
+                    buyerAddress: req.body.address
+                }
+            })
+            res.status(200).json("You bought this Accessory..")
         }
+    } catch (error) {
+        next(error)
     }
 }
 
-export const get_resale_items = async (req,res,next)=>{
+export const getItems = async(req,res,next) => {
+    const skip = req.query.skip ? Number(req.query.skip) : 0
+    const DEFAULT_LIMIT = 10
+    try {
+        const shoes = await Shoes.find({}).skip(skip).limit(DEFAULT_LIMIT);
+        const clothing = await Clothing.find({}).skip(skip).limit(DEFAULT_LIMIT);
+        const accessories = await Accessories.find({}).skip(skip).limit(DEFAULT_LIMIT);
+
+        const obj = [...shoes,...clothing,...accessories];
+
+        res.status(200).json({
+            success: true,
+            data: obj
+        });
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+export const get_resale_items = async (req, res, next) => {
     try {
         const shoes = await Shoes.find({ resale: true }).limit(10);
         const clothing = await Clothing.find({ resale: true }).limit(10);
         const accessories = await Accessories.find({ resale: true }).limit(10);
-    
+
         res.status(200).json({
-          success: true,
-          shoes,
-          clothing,
-          accessories,
+            success: true,
+            shoes,
+            clothing,
+            accessories,
         });
-      } catch (error) {
+    } catch (error) {
         next(error);
-      }
+    }
 
 }
 
-export const get_redesign_items = async (req,res,next)=>{
+export const get_redesign_items = async (req, res, next) => {
     try {
         const shoes = await Shoes.find({ resale: false }).limit(10);
         const clothing = await Clothing.find({ resale: false }).limit(10);
         const accessories = await Accessories.find({ resale: false }).limit(10);
-    
-        res.status(200).json({
-          success: true,
-          shoes,
-          clothing,
-          accessories,
-        });
-      } catch (error) {
-        next(error);
-      }
 
+        res.status(200).json({
+            success: true,
+            shoes,
+            clothing,
+            accessories,
+        });
+    } catch (error) {
+        next(error);
+    }
+
+}
+
+export const findItem = async (req,res,next) => {
+    if(req.params.type=='FootWear') {
+        try {
+            const item = await Shoes.findById({_id: req.params.id})
+            res.status(200).json(item) 
+        } catch (error) {
+            next(genErr(error))
+        }
+    }
+    if(req.params.type=='Clothing') {
+        try {
+            const item = await Clothing.findById({_id: req.params.id})
+            res.status(200).json
+        } catch (error) {
+            next(genErr(error))
+        }
+    }
+    if(req.params.type=='Accessories') {
+        try {
+            const item = await Accessories.findById({_id: req.params.id})
+            res.status(200).json
+        } catch (error) {
+            next(genErr(error))
+        }
+    }
+    
 }

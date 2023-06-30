@@ -8,7 +8,12 @@ const SellError = () => {
       <div className='flex items-center'>
           <span className='text-xl ml-2 font-inter font-bold'>
           Some Error OCCURED...
-          </span> 
+          </span>
+      </div>
+      <div className='flex items-center'>
+          <span className='text-xl text-green-500 ml-2 font-inter font-bold'>
+          Try Logging in Again...
+          </span>
       </div>
 
     </div>

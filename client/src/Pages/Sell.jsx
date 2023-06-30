@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDropzone } from 'react-dropzone';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom' 
+import { useNavigate } from 'react-router-dom'
 
 
 import SellData from '../Data/Sell.json'
@@ -92,7 +92,7 @@ const Sell = () => {
                 () => {
                     // Upload completed successfully, now we can get the download URL
                     getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-                        
+
                         imgurls.push(downloadURL)
                         setImgUrl(imgurls);
                         console.log(imgUrl.length)
@@ -167,35 +167,36 @@ const Sell = () => {
     }
 
     const handleSubmit = async (e) => {
-            let param = ''
-            if (category === 'FootWear') param = 'shoes'
-            else if (category === 'Clothing') param = 'cloths'
-            else if (category === 'Accessories') param = 'access'
-            try {
-                const data = {
-                    resale: !isRedesigned,
-                    gender: genderState     ,
-                    subCategory: subbCategory,
-                    brandName: brandName,
-                    size: size,
-                    age: age,
-                    orgLink: productLink,
-                    oldCost: oldPrice,
-                    newCost: newPrice,
-                    pickupAddress: address,
-                    noteForBuyer: noteBuyer,
-                    images: imgUrl
-                }
-                
-                const res = await axios.post("/item/"+param, data)
-                console.log('result',res.data)
-                
-                history('/sell-success')
-            } catch (error) {
-                console.log(error)
-                history('sell')
+        let param = ''
+        if (category === 'FootWear') param = 'shoes'
+        else if (category === 'Clothing') param = 'cloths'
+        else if (category === 'Accessories') param = 'access'
+        try {
+            const data = {
+                resale: !isRedesigned,
+                gender: genderState,
+                subCategory: subbCategory,
+                type: category,
+                brandName: brandName,
+                size: size,
+                age: age,
+                orgLink: productLink,
+                oldCost: oldPrice,
+                newCost: newPrice,
+                pickupAddress: address,
+                noteForBuyer: noteBuyer,
+                images: imgUrl
             }
-        
+
+            const res = await axios.post("/item/" + param, data)
+            console.log('result', res.data)
+
+            history('/sell-success')
+        } catch (error) {
+            console.log(error)
+            history('/sell-error')
+        }
+
     }
 
 
@@ -252,27 +253,6 @@ const Sell = () => {
                         Brand Name :
                     </label>
                     <div className='h-full'>
-                        {
-                            showBrandInput &&
-                            <input
-                                className="ml-1 h-full text-sm border border-black rounded-md pl-2"
-                                placeholder="Enter Here"
-                                id='sell-brand-name'
-                                onChange={handleBrandInput}
-                            />
-                        }
-
-                        {
-                            !showBrandInput &&
-                            <input
-                                className="ml-1 h-full text-sm border border-black rounded-md pl-2"
-                                placeholder="Already Selected"
-                                id='sell-brand-name'
-                                disabled
-                            />
-                        }
-
-                        <span className='mx-3'>OR</span>
                         {
                             (category == 'Clothing' && (
                                 <select onChange={handleBrandInput} name="brand-name" className='border border-black rounded-md px-2 h-full text-sm' id="sell-brand-name-file">

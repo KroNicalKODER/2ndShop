@@ -6,54 +6,66 @@
                 "name" : "Clothing",
                 "subCategory" : [
                     {
+                      "name" : "-select-",
+                      "size" : ["select"]
+                    },
+                    {
                         "name" : "Shirt",
-                        "size" : ["XS","S","M","L","XL","2XL","3XL"]
+                        "size" : ["select","XS","S","M","L","XL","2XL","3XL"]
                     },
                     {
                         "name" : "T-shirt",
-                        "size" : ["XS","S","M","L","XL","2XL","3XL"]
+                        "size" : ["select","XS","S","M","L","XL","2XL","3XL"]
                     },
                     {
                         "name" : "Jeans",
-                        "size" : ["XS","S","M","L","XL","2XL","3XL"]
+                        "size" : ["select","XS","S","M","L","XL","2XL","3XL"]
                     },
                     {
                         "name" : "Others",
-                        "size" : "Specify"
+                        "size" : ["Specify"]
                     }
                 ]
             },
             {
                 "name" : "FootWear",
                 "subCategory" : [
+                  {
+                    "name" : "-select-",
+                    "size" : ["select"]
+                  },
                     {
                         "name" : "Slippers",
-                        "size" : ["6","7","8","9","10","11","12"]
+                        "size" : ["select","6","7","8","9","10","11","12"]
                     },
                     {
                         "name" : "Shoes",
-                        "size" : ["6","6.5","7",",7.5","8","8.5","9","9.5","10"]
+                        "size" : ["select","6","6.5","7","7.5","8","8.5","9","9.5","10"]
                     },
                     {
                       "name" : "Others",
-                      "size" : "Specify"
+                      "size" : ["Specify"]
                     }
                 ]
             },
             {
                 "name" : "Accessories",
                 "subCategory": [
+                  {
+                    "name" : "-select-",
+                    "size" : ["select"]
+                  },
                     {
                         "name" : "Wallet",
-                        "size" : "none"
+                        "size" : ["none"]
                     },
                     {
                         "name" : "Watch",
-                        "size" : "none"
+                        "size" : ["none"]
                     },
                     {
                         "name" : "Belts",
-                        "size" : "none"
+                        "size" : ["none"]
                     }
                 ]
             }
@@ -66,20 +78,24 @@
             "name": "Clothing",
             "subCategory": [
               {
+                "name" : "-select-",
+                "size" : ["select"]
+              },
+              {
                 "name": "Dress",
-                "size": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
+                "size": ["select","XS", "S", "M", "L", "XL", "2XL", "3XL"]
               },
               {
                 "name": "Skirt",
-                "size": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
+                "size": ["select","XS", "S", "M", "L", "XL", "2XL", "3XL"]
               },
               {
                 "name": "Jeans",
-                "size": ["XS", "S", "M", "L", "XL", "2XL", "3XL"]
+                "size": ["select","XS", "S", "M", "L", "XL", "2XL", "3XL"]
               },
               {
                 "name": "Others",
-                "size": "Specify"
+                "size": ["Specify"]
               }
             ]
           },
@@ -87,20 +103,24 @@
             "name": "FootWear",
             "subCategory": [
               {
+                "name" : "-select-",
+                "size" : ["select"]
+              },
+              {
                 "name": "Sandals",
-                "size": ["6", "7", "8", "9", "10", "11", "12"]
+                "size": ["select","6", "7", "8", "9", "10", "11", "12"]
               },
               {
                 "name": "Heels",
-                "size": ["6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10"]
+                "size": ["select","6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10"]
               },
               {
                 "name": "Flats",
-                "size": ["6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10"]
+                "size": ["select","6", "6.5", "7", "7.5", "8", "8.5", "9", "9.5", "10"]
               },
               {
                 "name": "Others",
-                "size": "Specify"
+                "size": ["Specify"]
               }
             ]
           },
@@ -108,20 +128,24 @@
             "name": "Accessories",
             "subCategory": [
               {
+                "name": "select",
+                "size":["none"]
+              },
+              {
                 "name": "Handbag",
-                "size" : "none"
+                "size" : ["none"]
               },
               {
                 "name": "Necklace",
-                "size" : "none"
+                "size" : ["none"]
               },
               {
                 "name": "Earrings",
-                "size" : "none"
+                "size" : ["none"]
               },
               {
                 "name": "Others",
-                "size" : "none"
+                "size" : ["none"]
               }
             ]
           }
