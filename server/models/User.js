@@ -27,16 +27,19 @@ const UserSchema = new mongoose.Schema({
         default: false
     },
     itemCart: {
-        type:[String]
+        type:[Object]
     },
     itemBought: {                   //URLS FOR ITEM BOUGHT
-        type: [String],
+        type: [Object],
+    },
+    pincode: {
+        type: String
     },
     itemSold: {
-        type: [String]
+        type: [Object]
     },
     itemRequested: {
-        type: [String]
+        type: [Object]
     },
     reportedBy: {
         type: [String]

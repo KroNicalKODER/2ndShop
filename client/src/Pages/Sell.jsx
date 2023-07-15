@@ -34,6 +34,7 @@ const Sell = () => {
     const [oldPrice, setOldPrice] = useState('0');
     const [productLink, setProductLink] = useState('-');
     const [noteBuyer, setNoteBuyer] = useState('-');
+    const [pinCode, setPincode] = useState('-');
 
     const [uploadPercentage, setUploadPercentage] = useState(0);
     const [fileCnt, setFileCnt] = useState(0)
@@ -185,7 +186,9 @@ const Sell = () => {
                 newCost: newPrice,
                 pickupAddress: address,
                 noteForBuyer: noteBuyer,
-                images: imgUrl
+                images: imgUrl,
+                pinOrigin: pinCode,
+                buyerId: '-'
             }
 
             const res = await axios.post("/item/" + param, data)
@@ -333,6 +336,11 @@ const Sell = () => {
                 <div className="mt-3 h-6 items-center w-full justify-between flex">
                     <label htmlFor="sell-address">Address : </label>
                     <input onChange={e => setAddress(e.target.value)} type="text" name="sell-address" id="sell-address" placeholder='Enter Address' className='h-full border border-black rounded-md ml-2 pl-2 text-sm' />
+                </div>
+                <hr className="w-full mt-2" />
+                <div className="mt-3 h-6 items-center w-full justify-between flex">
+                    <label htmlFor="sell-address">Pincode : </label>
+                    <input onChange={e => setPincode(e.target.value)} type="text" name="sell-pincode" id="sell-pincode" placeholder='Enter Pincode' className='h-full border border-black rounded-md ml-2 pl-2 text-sm' />
                 </div>
                 <div className="my-3 h-6 items-center w-full justify-between flex">
                     <label htmlFor="sell-note">Note for buyer : </label>

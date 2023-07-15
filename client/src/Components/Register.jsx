@@ -12,11 +12,12 @@ const Register = ({showRegister, handleCloseRegister}) => {
     const [phone,setPhone] = useState("")
     const [email,setEmail] = useState("")
     const [err,setErr] = useState()
+    const [pincode,setPincode] = useState()
     
     const handleRegister = async(e) => {
         e.preventDefault()
         try {
-            const user = await axios.post("/auth/register",{name,email,password,phone,address})
+            const user = await axios.post("/auth/register",{name,email,password,phone,address,pincode})
             setErr(<div className='text-xs mt-3 text-green-500 font-inter'> Registration Successfull..!!! </div>)
         } catch (error) {
             setErr(<div className='text-xs mt-3 text-red-500 font-inter'> Registration Failed..!!! </div>)
@@ -72,6 +73,13 @@ const Register = ({showRegister, handleCloseRegister}) => {
                             className='w-full px-2 py-1 '
                             onChange={e=>setPassword(e.target.value)}
                         />
+                        <input
+                            type='text'
+                            placeholder='Enter Pincode'
+                            className='w-full px-2 py-1 '
+                            onChange={e=>setPincode(e.target.value)}
+                        />
+                        
                         <hr className="w-full" />
                     </form>
                     

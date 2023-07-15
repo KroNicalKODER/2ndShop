@@ -8,6 +8,16 @@ const accessSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: true
+    },
+    pinOrigin: {
+        type: String,
+    },
+    pinDest: {
+        type: String,
+    },
     brandName: {
         type: String,
         required: true

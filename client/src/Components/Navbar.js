@@ -34,7 +34,6 @@ const Navbar = () => {
         {currentUser 
           ? 
           <div>
-            <span className='font-inter text-xs'> Logged In as : </span>
             <span className='font-inter ml-4 font-bold'>{currentUser.name}</span>
             <button onClick={handleLogOut} className='mx-2 font-inter font-bold rounded-md border-2 px-4 py-1 border-black transition duration-200 hover:bg-black hover:text-white'>Logout</button>
           </div>

@@ -57,6 +57,7 @@ const Login = ({show, handleCloseLogin}) => {
                             onChange={e=>setpassword(e.target.value)}
                             className='  w-full mt-5 px-2 py-1 border-indigo-500 border-2'
                         />
+                        
                     </form>
                     <div className='self-center mt-2'> OR</div>
                     <button onClick={handleSignInWithGoogle} className='mt-3 border border-black py-1 px-2 rounded-md hover:bg-slate-200 transition-all'>

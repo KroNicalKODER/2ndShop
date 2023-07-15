@@ -8,6 +8,10 @@ const clothSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: true
+    },
     brandName: {
         type: String,
         required: true
@@ -26,6 +30,12 @@ const clothSchema = mongoose.Schema({
     newCost: {
         type: Number,
         required: true
+    },
+    pinOrigin: {
+        type: String,
+    },
+    pinDest: {
+        type: String,
     },
     resale: {
         type: Boolean,

@@ -136,6 +136,20 @@ export const updateAccess = async (req, res, next) => {
     }
 }
 
+export const addToCart = async(req,res,next) => {
+    const obj = {
+        id : req.params.id,
+        type: req.params.type
+    }
+    try {
+        await User.findByIdAndUpdate(req.user.id, {
+            $push: {itemCart : obj}
+        })
+        res.status(200).json({message: true})
+    } catch (error) {
+        next(genErr(error))
+    }
+}
 
 export const buyShoes = async (req, res, next) => {
     try {
@@ -193,9 +207,9 @@ export const getItems = async(req,res,next) => {
     const skip = req.query.skip ? Number(req.query.skip) : 0
     const DEFAULT_LIMIT = 10
     try {
-        const shoes = await Shoes.find({}).skip(skip).limit(DEFAULT_LIMIT);
-        const clothing = await Clothing.find({}).skip(skip).limit(DEFAULT_LIMIT);
-        const accessories = await Accessories.find({}).skip(skip).limit(DEFAULT_LIMIT);
+        const shoes = await Shoes.find({buyerId: '-'}).skip(skip).limit(DEFAULT_LIMIT);
+        const clothing = await Clothing.find({buyerId: '-'}).skip(skip).limit(DEFAULT_LIMIT);
+        const accessories = await Accessories.find({buyerId: '-'}).skip(skip).limit(DEFAULT_LIMIT);
 
         const obj = [...shoes,...clothing,...accessories];
 
@@ -257,7 +271,7 @@ export const findItem = async (req,res,next) => {
     if(req.params.type=='Clothing') {
         try {
             const item = await Clothing.findById({_id: req.params.id})
-            res.status(200).json
+            res.status(200).json(item)
         } catch (error) {
             next(genErr(error))
         }
@@ -265,7 +279,7 @@ export const findItem = async (req,res,next) => {
     if(req.params.type=='Accessories') {
         try {
             const item = await Accessories.findById({_id: req.params.id})
-            res.status(200).json
+            res.status(200).json(item)
         } catch (error) {
             next(genErr(error))
         }

@@ -10,16 +10,20 @@ const Homepage = () => {
 
     const [allItems,setAllItems] = useState([])
     const [skip,setSkip] = useState(0)
-    const [currData,setCurrData] = useState([])
+    const [isEnd,setIsEnd] = useState(false)
 
     const [goodType,setGoodType] = useState('resale')
     const [gender,setGender] = useState('Male')
 
     const fetchItems = async (skip) => {
         try {
-            await axios.get(`/item?skip=0`)
+            await axios.get(`/item?skip=${skip}`)
             .then((response) => {
-                setAllItems(response.data.data)
+                if(response.data.data?.length===0) {
+                    setIsEnd(true)
+                    return
+                }
+                setAllItems([...allItems,...response.data.data])
             })
             .catch((error)=>{
                 console.log(error)
@@ -33,10 +37,19 @@ const Homepage = () => {
     useEffect(()=>{
         fetchItems(skip)
     },[skip])
+
+    const handleScroll = (e)=> {
+        const { offsetHeight, scrollTop, scrollHeight } = e.target;
+
+        if (offsetHeight + scrollTop >= scrollHeight) {
+            setSkip(skip+10);
+        }
+    }
+
   return (
     <div className='flex flex-col'>
         {/* <div className="fixed cursor-pointer flex justify-center items-center z-[10] rounded-[50%] mt-[80vh] self-baseline w-[50px] h-[50px] bg-blue-400"><i className='bi text-white bi-arrow-up'/></div> */}
-        <div className='flex mr-12 css-query'>
+        <div className='flex mr-12 css-query '>
             <div className='flex-[1] bg-white w-fit px-8 ml-4 py-4 mt-5 rounded-md shadow-md'>
                 <div className='flex items-center'>
                     <div className='font-ubuntu text-lg font-bold mb-2 flex items-center text-gray-700'>Filters <i className='text-sm ml-2 bi-filter bi'></i></div>
@@ -128,15 +141,16 @@ const Homepage = () => {
                 
             </div>
         </div>
-        <div className='flex flex-wrap justify-center'>
+        <div className='flex flex-wrap'>
             {
                 // JSON.stringify(allItems)
                 (allItems.length > 0) &&
                 (allItems.map((item)=>(
-                     <Card props={item}/>
+                     <Card key={item._id} props={item}/>
                 )))
             }
         </div>
+        {isEnd && <div className='text-xs text-green-600'> You had reached the end</div>}
     </div>
   )
 }

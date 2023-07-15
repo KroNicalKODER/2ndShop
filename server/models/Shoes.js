@@ -31,6 +31,12 @@ const shoeSchema = mongoose.Schema({
     oldCost: {
         type: Number,
     },
+    pinOrigin: {
+        type: String,
+    },
+    pinDest: {
+        type: String,
+    },
     newCost: {
         type: Number,
         required: true

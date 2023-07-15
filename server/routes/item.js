@@ -5,7 +5,8 @@ import {
     buyShoes,buyAccess,buyCloths, 
     delAccess,delShoes,delCloths,
     updateShoes,updateAccess,updateCloths, 
-    get_resale_items, get_redesign_items, getItems, findItem
+    get_resale_items, get_redesign_items, getItems, findItem, 
+    addToCart
 } from '../controllers/item.js'
 
 const router = express.Router()
@@ -32,6 +33,9 @@ router.delete("/access/:id", getToken, delAccess)
 router.put("/shoes/:id", getToken, updateShoes)
 router.put("/cloths/:id", getToken, updateCloths)
 router.put("/access/:id", getToken, updateAccess)
+
+//Add To Cart
+router.put("/cart/:id/:type",getToken,addToCart)
 
 //Buy an Item
 router.put("/buy/shoes/:id", getToken, buyShoes)
