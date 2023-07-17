@@ -42,7 +42,7 @@ const Card = ({ props }) => {
           <div className="w-full flex justify-center">
             <div className="font-montserrat text-xs mt-2 tracking-widest text-gray-600">{props.brandName}</div>
           </div>
-          <div className="font-inter text-sm">The Best Shirt in the history of the world</div>
+          <div className="font-inter text-sm">{props.noteForBuyer}</div>
           <div className="flex justify-between">
             <div className="font-montserrat">
               <span className="text-sm text-slate-600">Size: </span>

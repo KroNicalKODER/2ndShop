@@ -1,5 +1,5 @@
 import express from 'express'
-import {update, del, get, add_to_cart} from '../controllers/user.js'
+import {update, del, get, cartItems} from '../controllers/user.js'
 import getToken from '../getToken.js'
 
 const router = express.Router()
@@ -13,9 +13,7 @@ router.delete('/:id',getToken,del)
 //Get a user
 router.get('/find/:id',get)
 
-//Add to cart
-router.post('/:id/addtocart',add_to_cart)
-
+router.get('/cart',getToken,cartItems)
 //Buy an Item
 
 export default router

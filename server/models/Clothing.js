@@ -53,6 +53,9 @@ const clothSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    subCategory:{
+        type:String,
+    },
     buyerId : {
         type: String,
     },

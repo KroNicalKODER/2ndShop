@@ -22,6 +22,9 @@ const accessSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    subCategory:{
+        type:String,
+    },
     size:{
         type: String,
         required: true
@@ -33,6 +36,7 @@ const accessSchema = mongoose.Schema({
     oldCost: {
         type: Number,
     },
+    
     newCost: {
         type: Number,
         required: true

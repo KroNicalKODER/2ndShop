@@ -71,6 +71,7 @@ const shoeSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    
     delivered:{
         type: Boolean,
         default: false

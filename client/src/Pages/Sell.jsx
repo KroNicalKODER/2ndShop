@@ -343,7 +343,7 @@ const Sell = () => {
                     <input onChange={e => setPincode(e.target.value)} type="text" name="sell-pincode" id="sell-pincode" placeholder='Enter Pincode' className='h-full border border-black rounded-md ml-2 pl-2 text-sm' />
                 </div>
                 <div className="my-3 h-6 items-center w-full justify-between flex">
-                    <label htmlFor="sell-note">Note for buyer : </label>
+                    <label htmlFor="sell-note">Title : </label>
                     <textarea onChange={e => setNoteBuyer(e.target.value)} name="sell-note" id="sell-note" placeholder='Enter note' className='h-full border border-black rounded-md py-2 ml-2 pl-2 text-sm' />
                 </div>
 

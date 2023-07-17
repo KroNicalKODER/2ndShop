@@ -6,7 +6,8 @@ import {
     delAccess,delShoes,delCloths,
     updateShoes,updateAccess,updateCloths, 
     get_resale_items, get_redesign_items, getItems, findItem, 
-    addToCart
+    addToCart,
+    removeFromCart
 } from '../controllers/item.js'
 
 const router = express.Router()
@@ -36,6 +37,8 @@ router.put("/access/:id", getToken, updateAccess)
 
 //Add To Cart
 router.put("/cart/:id/:type",getToken,addToCart)
+//Remove From Cart
+router.delete('/cart/:id/:type',getToken,removeFromCart)
 
 //Buy an Item
 router.put("/buy/shoes/:id", getToken, buyShoes)
