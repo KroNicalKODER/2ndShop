@@ -4,32 +4,29 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 const Card = ({ props }) => {
-  let inProfile = false
-  let inSell = false
-  let sold = false
   let inCart = false
   let size = 'bg-white border w-full max-w-[16rem] border-gray-200 rounded-lg shadow my-1 dark:bg-gray-800 dark:border-gray-700'
-  if (props.component === 'sell') {
-    inSell = true
-  }
+
   if (props.inCart === 'true') {
     inCart = true
   }
-  if (props.sold === 'true') {
-    sold = true
-  }
-  if (props.page === 'profile') {
-    size = 'bg-white border w-full max-w-[15rem] border-gray-200 rounded-lg shadow my-1 dark:bg-gray-800 dark:border-gray-700'
-    inProfile = true
-  }
 
   const handleAddToCart = async () => {
-    await axios.put(`/item/cart/${props._id}/${props.type}`).then((res)=>{
+    await axios.put(`/item/cart/${props._id}/${props.type}`).then((res) => {
       alert("Added to Cart")
     })
-    .catch((err)=>{
-      alert("Failed")
+      .catch((err) => {
+        alert("Failed")
+      })
+  }
+
+  const handleRemoveFromCart =async () => {
+    await axios.delete(`/item/cart/${props._id}/${props.type}`).then((res) => {
+      alert("Removed from Cart... Refresh to See Result")
     })
+      .catch((err) => {
+        alert("Failed")
+      })
   }
 
   return (
@@ -62,35 +59,21 @@ const Card = ({ props }) => {
             <div className="">Rs. {props.newCost}</div>
           </div>
           {
-            inProfile
-              ?
-              inSell
-                ?
-                sold
-                  ?
-                  <div className='w-full flex justify-center'>
-                    <button className='text-sm font-inter px-4 py-2 rounded-lg bg-gray-200 border-2 border-gray-600'>Sold on 12-10-2013</button>
+            inCart ?
+              <div className="flex mt-2 items-center justify-center">
+                <button onClick={handleRemoveFromCart} className="text-white bg-red-700 hover:bg-red-800 mr-1 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg font-inter text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Remove cart</button>
+                <Link to={{ pathname: `/item/${props._id}/${props.type}`, state: { data: props } }}>
+                  <div className="flex items-center justify-center">
+                    <button
+                      className="text-white bg-amber-700 hover:bg-amber-800 ml-1 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg font-inter text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      Buy Now
+                    </button>
                   </div>
-                  :
-                  <div className='w-full flex justify-center'>
-                    <button className='text-sm font-inter px-4 py-2 rounded-lg bg-gray-200 border-2 border-gray-600'>Requested on 12-10-2013</button>
-                  </div>
-                :
-                inCart
-                  ?
-                  <Link to={{ pathname: `/item/${props._id}/${props.type}`, state: { data: props } }}>                  <div className="flex mt-2 items-center justify-center">
-                    <button className="text-white bg-amber-700 hover:bg-amber-800 ml-1 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg font-inter text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</button>
-                  </div>
-                  </Link>
-                  :
-                  <div className='w-full flex justify-center'>
-                    <button className='text-sm font-inter px-4 py-2 rounded-lg bg-gray-200 border-2 border-gray-600'>Bought on 12-10-2013</button>
-                  </div>
+                </Link>
+              </div>
               :
               <div className="flex mt-2 items-center justify-center">
-
                 <button onClick={handleAddToCart} className="text-white bg-blue-700 hover:bg-blue-800 mr-1 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg font-inter text-xs px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
-
                 <Link to={{ pathname: `/item/${props._id}/${props.type}`, state: { data: props } }}>
                   <div className="flex items-center justify-center">
                     <button

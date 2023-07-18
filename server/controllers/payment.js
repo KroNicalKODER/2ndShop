@@ -115,6 +115,37 @@ export const afterPayment = async (req, response, next) => {
         const newOrder = new Orders(ordersObj)
         try {
             const savedOrder = await newOrder.save()
+            if(item_type === 'FootWear'){
+                try {
+                    await Shoes.findByIdAndUpdate(item_id,{
+                        buyerId : req.user.id,
+                        buyerAddress: reciever_address
+                    })
+                } catch (error) {
+                    next(genErr(error))
+                }
+            }
+            if(item_type=='Clothing') {
+                try {
+                    await Clothing.findByIdAndUpdate(item_id,{
+                        buyerId : req.user.id,
+                        buyerAddress: reciever_address
+                    })
+                } catch (error) {
+                    next(genErr(error))
+                }
+            }
+            if(item_type=='Accessories') {
+                try {
+                    await Accessories.findByIdAndUpdate(item_id,{
+                        buyerId : req.user.id,
+                        buyerAddress: reciever_address
+                    })
+                } catch (error) {
+                    next(genErr(error))
+                }
+            }
+            
             item.buyerId = req.user.id
             item.buyerAddress = reciever_address
             response.redirect('http://localhost:3000/sell-success')

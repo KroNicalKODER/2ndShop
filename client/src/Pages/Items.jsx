@@ -1,60 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card'
+import axios from 'axios'
 
 const Items = () => {
+
+  const [cartItems,setCartItems] = useState([])
+
+  const fetchCartItems = async() => {
+    await axios.get('/user/cart')
+    .then((res)=>{
+      setCartItems(res.data)
+    })
+    .catch((err)=> {
+      console.log(err)
+    })
+  }
+
+  useEffect(()=>{
+    fetchCartItems()
+  },cartItems)
   return (
     <div>
-        <div className='py-3'>
-          <div className='flex justify-between mr-6'>
-            <div className='font-ubuntu'>Items In Cart</div>
-            <div className='text-xs underline'>See All</div>
-          </div>
-          <div className="flex flex-wrap">
-            <Card inCart='true' page='profile'/>
-            <Card inCart='true' page='profile'/>
-            <Card inCart='true' page='profile'/>
-            <Card inCart='true' page='profile'/>
-          </div>
-        </div>
-        <hr className='w-full'/>
-        <div className='py-3'>
-          <div className='flex justify-between mr-6'>
-            <div className='font-ubuntu'>Items Requested</div>
-            <div className='text-xs underline'>See All</div>
-          </div>
-          <div className="flex flex-wrap">
-            <Card page='profile' component='sell' />
-            <Card page='profile' component='sell' />
-            <Card page='profile' component='sell' />
-            <Card page='profile' component='sell'/>
-          </div>
-        </div>
-        
-        <hr className='w-full'/>
-        <div className='py-3'>
-          <div className='flex justify-between mr-6'>
-            <div className='font-ubuntu'>Items Sold</div>
-            <div className='text-xs underline'>See All</div>
-          </div>
-          <div className="flex flex-wrap">
-            <Card page='profile' component='sell' sold='true'/>
-            <Card page='profile' component='sell' sold='true'/>
-            <Card page='profile' component='sell' sold='true'/>
-            <Card page='profile' component='sell' sold='true'/>
-          </div>
-        </div>
-        <hr className='w-full'/>
-        <div className='py-3'>
-          <div className='flex justify-between mr-6'>
-            <div className='font-ubuntu'>Items Bought</div>
-            <div className='text-xs underline'>See All</div>
-          </div>
-          <div className="flex flex-wrap ">
-            <Card page='profile'/>
-            <Card page='profile'/>
-            <Card page='profile'/>
-            <Card page='profile'/>
-          </div>
+        <div className='bg-white mt-4 px-4 py-4 shadow-md rounded-md mr-4'>
+          <h1 className='font-ubuntu font-bold text-2xl'>CART</h1>
+          {
+            cartItems.length==0 && <div>Loading...</div>
+          }
+          {
+            cartItems.length>0 &&
+            (cartItems.map((item)=>(
+              <Card key={item._id} props={{...item,inCart: 'true'}} />
+            )))
+          }
         </div>
     </div>
   )

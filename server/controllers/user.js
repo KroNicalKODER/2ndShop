@@ -1,5 +1,8 @@
 import User from "../models/User.js"
 import genError from "../error.js"
+import Shoes from '../models/Shoes.js'
+import Clothing from '../models/Clothing.js'
+import Accessories from '../models/Accessories.js'
 
 export const update = async (req,res,next) => {
     if(req.params.id === req.user.id){
@@ -45,6 +48,20 @@ export const get = async (req,res,next) => {
 
 export const cartItems = async (req,res,next) => {
     const user = await User.findById(req.user.id)
-    console.log(user)
-    res.status(200).json(user)
+    const arr = user.itemCart
+    let resArr = []
+    for (let index = 0; index < arr.length; index++) {
+        const obj1 = arr[index]
+        let item={};
+        if(obj1.type === 'FootWear') {
+            resArr.push(await Shoes.findById(obj1.id ))
+        }
+        if(obj1.type === 'Accessories') {
+            resArr.push(await Accessories.findById(obj1.id))
+        }
+        if(obj1.type === 'Clothing') {
+            resArr.push(await Clothing.findById(obj1.id))
+        }
+    }
+    res.status(200).json(resArr)
 }

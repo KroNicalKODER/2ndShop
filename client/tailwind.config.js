@@ -15,7 +15,6 @@ module.exports = {
   plugins: [
             require('@tailwindcss/aspect-ratio'),
             require('tailwind-scrollbar-hide'),
-            require("tw-elements/dist/plugin.cjs")
             ],
 }
 

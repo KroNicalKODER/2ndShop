@@ -141,6 +141,16 @@ export const addToCart = async (req, res, next) => {
         id: req.params.id,
         type: req.params.type
     }
+    const user = await User.findById(req.user.id)
+
+    const isItemAlreadyPresent = user.itemCart.some(
+        (item) => item.id === obj.id && item.type === obj.type
+      );
+    if (isItemAlreadyPresent) {
+       // Item already exists in the cart
+       return res.status(200).json({ message: 'Item already in cart' });
+    }
+
     try {
         await User.findByIdAndUpdate(req.user.id, {
             $push: { itemCart: obj }
@@ -156,6 +166,7 @@ export const removeFromCart = async (req, res, next) => {
         id: req.params.id,
         type: req.params.type
     }
+
     try {
         await User.findByIdAndUpdate(req.user.id, {
             $pull: { itemCart: obj }
