@@ -10,8 +10,10 @@ import itemRoutes from './routes/item.js'
 import paymentRoutes from './routes/payment.js'
 
 const app = express()
+
 dotenv.config()
 app.use(cors())
+const PORT = process.env.PORT || 8800
 
 mongoose.set('strictQuery',true)
 const connect = ()=>{
@@ -47,7 +49,7 @@ app.use((err,req,res,next)=>{
 })
 
 
-app.listen(8800,()=>{
+app.listen(PORT,()=>{
     connect()
     console.log("Connected to server")
 })

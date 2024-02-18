@@ -138,7 +138,7 @@ const Item = (props) => {
                         </div>
                         <hr className="w-full my-2" />
                         <div className="w-full flex justify-between px-4">
-                            <span>Note From Buyer</span>
+                            <span>Title</span>
                             <textarea disabled className='overflow-scroll py-2 border-slate-700 border rounded-md text-xs text-gray-500 px-2 scrollbar-hide' value={item.noteForBuyer} id="" cols="30" rows="3"></textarea>
                         </div>
                         <hr className="w-full my-2" />

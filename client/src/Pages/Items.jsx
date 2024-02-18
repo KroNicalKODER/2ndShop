@@ -26,12 +26,17 @@ const Items = () => {
           {
             cartItems.length==0 && <div>Loading...</div>
           }
+          <div className='flex flex-wrap'>
+
           {
             cartItems.length>0 &&
+            
             (cartItems.map((item)=>(
               <Card key={item._id} props={{...item,inCart: 'true'}} />
-            )))
-          }
+              )))
+            }
+            
+          </div>
         </div>
     </div>
   )

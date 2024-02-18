@@ -26,7 +26,6 @@ const Login = ({show, handleCloseLogin}) => {
             console.log(user.data)
             dispatch(loginSuccess(user.data))
             setErr(<div className='font-inter text-green-500 text-xs mt-3'>Logged In successfully</div>)
-
         } catch (error) {
             setErr(<div className='font-inter text-red-500 text-xs mt-3'>Invalid email or password</div>)
             dispatch(loginFailure())
